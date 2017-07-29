@@ -21,15 +21,27 @@ class LembreteStore{
 
   }
   
-  
+  func updateItem(lembrete:Lembrete,index:Int){
+     lembretes.remove(at: index)
+     lembretes.insert(lembrete, at: index)
+    firebaseManager.updateItem(lembrete: lembrete)
+     orderArray()
+
+  }
+
   
 
   func orderArray(){
-    let  array = lembretes.sorted{ $0.date! < $1.date! }
+    let  arrayDate = lembretes.sorted{ $0.date! < $1.date! }
+    let arrayConcluida = arrayDate.sorted{!$0.concluida! && $1.concluida!}
     lembretes.removeAll()
-    lembretes = array
+    lembretes = arrayConcluida
     print(lembretes)
   }
   
   
+
+  
+  
 }
+

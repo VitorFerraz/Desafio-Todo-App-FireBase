@@ -116,14 +116,13 @@ class ListLembretesTableViewController: UITableViewController {
     alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
       
       let titulo = alert?.textFields![0].text
-      if titulo == ""{
-        return
+      if titulo != ""{
+        lembreteStore.addLembrete(titulo: titulo!)
+        self.tableView.reloadData()
+       
       }
       
-      lembreteStore.addLembrete(titulo: titulo!)
-      lembreteStore.orderArray()
-
-      self.tableView.reloadData()
+     
 
            print("Text field: \(titulo)")
     }))

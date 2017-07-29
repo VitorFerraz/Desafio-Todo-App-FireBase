@@ -48,13 +48,8 @@ class LembreteViewController: UIViewController {
     lembrete?.concluida = status.isOn
     lembrete?.titulo = titulo.text
     
-    lembreteStore.lembretes.remove(at: lembreteStore.selectIndex)
-   lembreteStore.lembretes.insert(lembrete!, at: lembreteStore.selectIndex)
+    lembreteStore.updateItem(lembrete: lembrete!, index: lembreteStore.selectIndex)
     
-    firebaseManager.ref.child((lembrete?.id)!).child("lembrete").child("titulo").setValue(lembrete?.titulo)
-    
-    firebaseManager.ref.child((lembrete?.id)!).child("lembrete").child("concluida").setValue(lembrete?.concluida)
-
 
     
     print("atuali")
